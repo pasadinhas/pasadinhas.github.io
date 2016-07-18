@@ -89,6 +89,8 @@ function get_units_success_callback(units) {
         units_dom.append(create_unit_button_dom(units[i].id, units[i].presentationName));
     }
 
+    add_button_event_handler()
+
     $.get(url_api_current(username))
         .done(get_current_unit_success)
         .fail(get_current_unit_failed)
@@ -98,8 +100,8 @@ function get_units_failed_callback() {
     alert("failed to get units from dot")
 }
 
-function set_unit_success_callback(id) {
-    UI_set_unit(id)
+function set_unit_success_callback(unit) {
+    UI_set_unit(unit.id)
 }
 
 function set_unit_fail_callback() {
@@ -110,11 +112,18 @@ function set_unit_fail_callback() {
 // -- Event Handlers
 // -------------------------------------------------------------
 
-function handle_button_click() {
+function handle_button_click(e) {
+    alert('btn clicked')
     $('button').prop('disabled', true);
     $(this).blur();
     api_set_unit($(this).data('unit-id'))
     $('button').prop('disabled', false);
+    return false;
+}
+
+
+function add_button_event_handler() {
+    $("button[data-unit-id]").click(handle_button_click)
 }
 
 // -------------------------------------------------------------
@@ -147,8 +156,6 @@ function session_failed_callback() {
 // -------------------------------------------------------------
 
 var units_dom = $("#units");
-
-$("button[data-unit-id]").click(handle_button_click)
 
 //xrxSessionGetSessionInfo("https://localhost", session_success_callback, session_failed_callback);
 session_success_callback(1,2)
