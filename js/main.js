@@ -123,14 +123,15 @@ function handle_button_click() {
 
 
 function session_success_callback (sessRequest, sessResponse) {
-    var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
+    //var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
     
-    if (!sessInfoObj)
+    if (false && !sessInfoObj)
     {
         alert("Failed to get session info");
     }
 
-    username = xrxGetElementValue(sessInfoObj, 'username')
+    //username = xrxGetElementValue(sessInfoObj, 'username')
+    username = 'ist175714'
 
     $.get(url_api_list(username))
         .done(get_units_success_callback)
@@ -149,4 +150,5 @@ var units_dom = $("#units");
 
 $("button[data-unit-id]").click(handle_button_click)
 
-xrxSessionGetSessionInfo("https://localhost", session_success_callback, session_failed_callback);
+//xrxSessionGetSessionInfo("https://localhost", session_success_callback, session_failed_callback);
+session_success_callback(1,2)
