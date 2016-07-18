@@ -1,0 +1,70 @@
+/* ------------------------------------------------
+   -- Remove all margins and paddings
+   ------------------------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* ------------------------------------------------
+   -- Emulate Xerox screen
+   ------------------------------------------------ */
+
+.black {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    background: black;
+}
+
+.xerox-canvas {
+    position:fixed;
+    top: calc(50vh - 480px/2);
+    left: calc(50vw - 800px/2);
+    width: 800px;
+    height: 480px;
+    background-color: white;
+    overflow: scroll;
+}
+
+/* ------------------------------------------------
+   -- App container
+   ------------------------------------------------ */
+
+.my-container {
+    width: inherit !important;
+    padding: 40px 80px !important;
+    background-color: #eee;
+    min-height: 100%;
+}
+
+/* ------------------------------------------------
+   -- Buttons
+   ------------------------------------------------ */
+
+.btn {
+    width: 100%;
+    margin-bottom: 15px !important;
+}
+
+
+.btn-text {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 auto;
+}
+.btn-labeled {
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle;
+}
+.btn-label {
+    float: left;
+    position: relative;
+    display: inline-block;
+    background: transparent;
+    border-radius: 3px 0 0 3px;
+}
