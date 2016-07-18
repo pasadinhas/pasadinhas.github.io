@@ -113,7 +113,6 @@ function set_unit_fail_callback() {
 // -------------------------------------------------------------
 
 function handle_button_click(e) {
-    alert('btn clicked')
     $('button').prop('disabled', true);
     $(this).blur();
     api_set_unit($(this).data('unit-id'))
@@ -132,15 +131,15 @@ function add_button_event_handler() {
 
 
 function session_success_callback (sessRequest, sessResponse) {
-    //var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
+    var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
     
-    if (false && !sessInfoObj)
+    if (!sessInfoObj)
     {
         alert("Failed to get session info");
     }
 
-    //username = xrxGetElementValue(sessInfoObj, 'username')
-    username = 'ist175714'
+    username = xrxGetElementValue(sessInfoObj, 'username')
+    //username = 'ist175714'
 
     $.get(url_api_list(username))
         .done(get_units_success_callback)
@@ -157,5 +156,5 @@ function session_failed_callback() {
 
 var units_dom = $("#units");
 
-//xrxSessionGetSessionInfo("https://localhost", session_success_callback, session_failed_callback);
-session_success_callback(1,2)
+xrxSessionGetSessionInfo("https://localhost", session_success_callback, session_failed_callback);
+//session_success_callback(1,2)
