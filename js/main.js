@@ -102,6 +102,9 @@ function get_units_failed_callback() {
 
 function set_unit_success_callback(unit) {
     UI_set_unit(unit.id)
+    setTimeout(function() {
+        ExitApplcation()
+    }, 1000)
 }
 
 function set_unit_fail_callback() {
