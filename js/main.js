@@ -131,6 +131,7 @@ function add_button_event_handler() {
 
 
 function session_success_callback (sessRequest, sessResponse) {
+    /*
     var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
     
     if (!sessInfoObj)
@@ -139,7 +140,8 @@ function session_success_callback (sessRequest, sessResponse) {
     }
 
     username = xrxGetElementValue(sessInfoObj, 'username')
-    //username = 'ist175714'
+    */
+    username = 'ist24439'
 
     $.get(url_api_list(username))
         .done(get_units_success_callback)
@@ -156,5 +158,5 @@ function session_failed_callback() {
 
 var units_dom = $("#units");
 
-xrxSessionGetSessionInfo("https://localhost", session_success_callback, session_failed_callback);
-//session_success_callback(1,2)
+//xrxSessionGetSessionInfo("https://localhost", session_success_callback, session_failed_callback);
+session_success_callback(1,2)
