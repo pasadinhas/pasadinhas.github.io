@@ -174,7 +174,7 @@ function formatXml(xml){
 function session_success_callback (sessRequest, sessResponse) {
     $("body").html("<pre id='json1'></pre>");
     var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
-    $("#json1").text(sessInfoObj);
+    $("#json1").text(JSON.stringify(sessInfoObj, null, '\t'));
 
     if (!sessInfoObj)
     {
