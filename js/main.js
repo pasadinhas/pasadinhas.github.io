@@ -187,6 +187,7 @@ function session_success_callback (sessRequest, sessResponse) {
     username = xrxGetElementValue(sessInfoObj, 'username')
     
     myDebug.username = username;
+    myDebug.qualifiedUsername = xrxGetElementValue(sessInfoObj, 'qualifiedUsername')
     
     $("#json2").text(JSON.stringify(myDebug, null, '\t'));
 
