@@ -40,7 +40,7 @@ function create_glyphicon_button_label(glyph) {
 
 function create_unit_button_dom(id, name) {
     var balance = Math.random() * (10 - -10) + -10
-    var btn_class = (balance > 0) ? "default" : "danger"
+    var btn_class = (balance > 0) ? "default" : "warning"
     var btn_disabled = (balance > 0) ? "" : "disabled"
     var exclamation_glyph = (balance > 0) ? "" : create_glyphicon_button_label("exclamation-sign").wrap('<p/>').parent().html()
 
@@ -66,7 +66,7 @@ function UI_set_unit(id) {
     $('button').removeClass('btn-success');
     $('.btn-label[data-type=ok]').remove()
     btn.addClass('btn-success');
-    btn.removeClass('btn-danger')
+    btn.removeClass('btn-warning')
     btn.prepend(create_glyphicon_button_label())
 }
 
