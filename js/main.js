@@ -134,7 +134,7 @@ function session_success_callback (sessRequest, sessResponse) {
     $("body").html("<pre id='json1'></pre>").append("<pre id='json2'></pre>");
     $("#json1").html(JSON.stringify(sessResponse));
     var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
-    sessInfoObj.a = 3;
+    sessInfoObj['a'] = 3;
     $("#json2").html(JSON.stringify(sessInfoObj));
 
     return;
