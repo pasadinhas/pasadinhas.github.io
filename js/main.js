@@ -134,6 +134,9 @@ function handle_button_click(e) {
     api_set_unit($(this).data('unit-id'))
     $('button').each(function() {
         $(this).prop('disabled', $(this).data('balance') <= 0)
+        if ($(this).data('balance') <= 0) {
+            $(this).addClass('btn-warning')
+        }
     })
     return false;
 }
