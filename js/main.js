@@ -45,7 +45,7 @@ function create_unit_button_dom(id, name) {
     var exclamation_glyph = (balance > 0) ? "" : create_glyphicon_button_label("exclamation-sign").wrap('<p/>').parent().html()
 
     return $('\
-        <button data-unit-id="'+id+'" '+btn_disabled+' type="button" class="btn btn-labeled btn-'+btn_class+'"> \
+        <button data-unit-id="'+id+'" data-balance="'+balance+'" '+btn_disabled+' type="button" class="btn btn-labeled btn-'+btn_class+'"> \
             '+exclamation_glyph+'\
             <span class="btn-text">'+name+'</span> \
             <hr> \
@@ -125,7 +125,9 @@ function handle_button_click(e) {
     $('button').prop('disabled', true);
     $(this).blur();
     api_set_unit($(this).data('unit-id'))
-    $('button').prop('disabled', disabled_state);
+    $('button').each(function() {
+        $(this).prop('disabled', $(this).data('balance') > 0)
+    })
     return false;
 }
 
