@@ -43,13 +43,13 @@ function create_unit_button_dom(id, name) {
     var btn_class = (balance > 0) ? "default" : "danger"
     var btn_disabled = (balance > 0) ? "" : "disabled"
     var exclamation_glyph = (balance > 0) ? "" : create_glyphicon_button_label("exclamation-sign").wrap('<p/>').parent().html()
-    console.log(exclamation_glyph)
+
     return $('\
         <button data-unit-id="'+id+'" data-balance="'+balance+'" '+btn_disabled+' type="button" class="btn btn-labeled btn-'+btn_class+'"> \
             '+exclamation_glyph+'\
             <span class="btn-text">'+name+'</span> \
             <hr> \
-            <span class="btn-text">Saldo: '+balance.toFixed(2)+'</span> \
+            <span class="btn-text">Saldo: '+balance.toFixed(2)+' €</span> \
         </button> \
     ');
 }
