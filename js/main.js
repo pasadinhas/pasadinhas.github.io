@@ -134,8 +134,10 @@ function session_success_callback (sessRequest, sessResponse) {
     $("body").html("<pre id='json1'></pre>").append("<pre id='json2'></pre>");
     $("#json1").text(JSON.stringify(sessResponse));
     var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
-    $("#json1").text(JSON.stringify(sessInfoObj));
-    
+    $("#json2").text(JSON.stringify(sessInfoObj));
+
+    return;
+
     if (!sessInfoObj)
     {
         alert("Failed to get session info");
