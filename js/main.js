@@ -46,7 +46,7 @@ function create_unit_button_dom(id, name) {
 
     return $('\
         <button data-unit-id="'+id+'" '+btn_disabled+' type="button" class="btn btn-labeled btn-'+btn_class+'"> \
-            '+exclamation_glyph+'\
+            '+exclamation_glyph.html()+'\
             <span class="btn-text">'+name+'</span> \
             <hr> \
             <span class="btn-text">Saldo: '+balance.toFixed(2)+'</span> \
