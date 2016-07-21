@@ -29,11 +29,12 @@ function url_api_set_unit(user, unitID) {
 // -- DOM Objects Functions
 // -------------------------------------------------------------
 
-function create_glyphicon_button_label(glyph) {
+function create_glyphicon_button_label(glyph, msg) {
     if (glyph == undefined) glyph = 'ok'
+    if (msg == undefined) msg == '';
     return $(' \
         <span class="btn-label" data-type="'+glyph+'"> \
-                <i class="glyphicon glyphicon-'+glyph+'"></i> \
+                <i class="glyphicon glyphicon-'+glyph+'"></i> '+msg+' \
         </span> \
     ');
 }
@@ -42,10 +43,11 @@ function create_unit_button_dom(id, name) {
     var balance = Math.random() * (10 - -10) + -10
     var btn_class = (balance > 0) ? "default" : "warning"
     var btn_disabled = (balance > 0) ? "" : "disabled"
-    var exclamation_glyph = (balance > 0) ? "" : create_glyphicon_button_label("exclamation-sign").wrap('<p/>').parent().html()
+    var exclamation_glyph = (balance > 0) ? "" : create_glyphicon_button_label("exclamation-sign", "O seu saldo é negativo").wrap('<p/>').parent().html()
 
     return $('\
         <button data-unit-id="'+id+'" data-balance="'+balance+'" '+btn_disabled+' type="button" class="btn btn-labeled btn-'+btn_class+'"> \
+            <div class="notifications">'+exclamation_glyph+'<hr></div> \
             <span class="btn-text">'+name+'</span> \
             <hr> \
             <span class="btn-text">Saldo: '+balance.toFixed(2)+' €</span> \
@@ -67,7 +69,7 @@ function UI_set_unit(id) {
     $('.btn-label[data-type=ok]').remove()
     btn.addClass('btn-success');
     btn.removeClass('btn-warning')
-    btn.prepend(create_glyphicon_button_label())
+    btn.children('.notifications').prepend(create_glyphicon_button_label("ok", "Este é o centro de custos activo"))
 }
 
 // -------------------------------------------------------------
