@@ -49,7 +49,7 @@ function create_unit_button_dom(id, name) {
         <button data-unit-id="'+id+'" data-balance="'+balance+'" '+btn_disabled+' type="button" class="btn btn-labeled btn-'+btn_class+'"> \
             <div class="notifications"><hr></div> \
             <span class="btn-text">'+name+'</span> \
-            <hr> \
+            <br> \
             <span class="btn-text">Saldo: '+balance.toFixed(2)+' €</span> \
         </button> \
     ');
