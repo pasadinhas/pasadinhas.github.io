@@ -121,10 +121,11 @@ function set_unit_fail_callback() {
 // -------------------------------------------------------------
 
 function handle_button_click(e) {
+    var disabled_state = $('button').prop('disabled')
     $('button').prop('disabled', true);
     $(this).blur();
     api_set_unit($(this).data('unit-id'))
-    $('button').prop('disabled', false);
+    $('button').prop('disabled', disabled_state);
     return false;
 }
 
