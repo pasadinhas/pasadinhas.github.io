@@ -180,7 +180,7 @@ function session_success_callback (sessRequest, sessResponse) {
         alert("Failed to get session info");
     }
 
-    $("#json1").text(JSON.stringify(sessResponse, null, '\t'));
+    $("#json1").text(sessResponse);
 
     var myDebug = {};
 
