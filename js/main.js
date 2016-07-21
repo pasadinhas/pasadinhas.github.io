@@ -172,19 +172,16 @@ function formatXml(xml){
 }
 
 function session_success_callback (sessRequest, sessResponse) {
-    $("body").html("<pre id='json1'></pre>").append("<pre id='json2'></pre>");
-    $("#json1").html(formatXml(sessResponse));
-    return;
+    $("body").html("<pre id='json1'></pre>");
     var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
-    sessInfoObj['a'] = 3;
-    $("#json1").html(JSON.stringify(sessInfoObj));
-
-    return;
+    $("#json1").text(sessInfoObj);
 
     if (!sessInfoObj)
     {
         alert("Failed to get session info");
     }
+
+    return;
 
     username = xrxGetElementValue(sessInfoObj, 'username')
     alert("username is: " + username)
