@@ -39,11 +39,17 @@ function create_glyphicon_button_label(glyph) {
 }
 
 function create_unit_button_dom(id, name) {
+    var balance = Math.random() * (10 - -10) + -10
+    var btn_class = (balance > 0) ? "default" : "danger"
+    var btn_disabled = (balance > 0) ? "" : "disabled"
+    var exclamation_glyph = (balance > 0) ? "" : create_glyphicon_button_label("exclamation-sign")
+
     return $('\
-        <button data-unit-id="'+id+'" type="button" class="btn btn-labeled btn-default"> \
+        <button data-unit-id="'+id+'" '+btn_disabled+' type="button" class="btn btn-labeled btn-'+btn_class+'"> \
+            '+exclamation_glyph+'\
             <span class="btn-text">'+name+'</span> \
             <hr> \
-            <span class="btn-text">Saldo: 2.00</span> \
+            <span class="btn-text">Saldo: '+balance.toFixed(2)+'</span> \
         </button> \
     ');
 }
