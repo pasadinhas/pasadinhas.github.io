@@ -98,6 +98,7 @@ function get_units_success_callback(units) {
 
     $("button").each(function() {
         if ($(this).data('balance') <= 0) {
+            console.log(this)
             $(this).prepend(create_glyphicon_button_label("exclamation-sign"))
         }
     })
