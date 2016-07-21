@@ -129,48 +129,6 @@ function add_button_event_handler() {
 // -- Session Callbacks
 // -------------------------------------------------------------
 
-function formatXml(xml){
-    var out = "";
-    var tab = "    ";
-    var indent = 0;
-    var inClosingTag=false;
-    var dent=function(no){
-        out += "\n";
-        for(var i=0; i < no; i++)
-            out+=tab;
-    }
-
-
-    for (var i=0; i < xml.length; i++) {
-        var c = xml.charAt(i);
-        if(c=='<'){
-            // handle </
-            if(xml.charAt(i+1) == '/'){
-                inClosingTag = true;
-                dent(--indent);
-            }
-            out+=c;
-        }else if(c=='>'){
-            out+=c;
-            // handle />
-            if(xml.charAt(i-1) == '/'){
-                out+="\n";
-                //dent(--indent)
-            }else{
-              if(!inClosingTag)
-                dent(++indent);
-              else{
-                out+="\n";
-                inClosingTag=false;
-              }
-            }
-        }else{
-          out+=c;
-        }
-    }
-    return out;
-}
-
 function session_success_callback (sessRequest, sessResponse) {
     $("body").html("<pre id='json1'></pre>").append($("<pre id='json2'></pre>"));
     var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
@@ -180,14 +138,13 @@ function session_success_callback (sessRequest, sessResponse) {
         alert("Failed to get session info");
     }
 
-    $("#json1").text(sessResponse);
+    $("#json1").html(sessResponse);
 
     var myDebug = {};
 
     username = xrxGetElementValue(sessInfoObj, 'username')
     
     myDebug.username = username;
-    myDebug.qualifiedUsername = xrxGetElementValue(sessInfoObj, 'qualifiedUsername')
     
     $("#json2").text(JSON.stringify(myDebug, null, '\t'));
 
