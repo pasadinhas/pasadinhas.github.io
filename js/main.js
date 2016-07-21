@@ -2,7 +2,7 @@
 // -- Global Variables (I know, I'm going to hell)
 // -------------------------------------------------------------
 
-var username;
+var userID;
 
 // -------------------------------------------------------------
 // -- API URL generators
@@ -67,7 +67,7 @@ function UI_set_unit(id) {
 // -------------------------------------------------------------
 
 function api_set_unit(id) {
-    $.post(url_api_set_unit(username, id))
+    $.post(url_api_set_unit(userID, id))
         .done(set_unit_success_callback)
         .fail(set_unit_fail_callback)
 }
@@ -91,7 +91,7 @@ function get_units_success_callback(units) {
 
     add_button_event_handler()
 
-    $.get(url_api_current(username))
+    $.get(url_api_current(userID))
         .done(get_current_unit_success)
         .fail(get_current_unit_failed)
 }
@@ -130,29 +130,17 @@ function add_button_event_handler() {
 // -------------------------------------------------------------
 
 function session_success_callback (sessRequest, sessResponse) {
-    $("body").html("<pre id='json1'></pre>").append($("<pre id='json2'></pre>"));
-    var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
+    /*var sessInfoObj = xrxSessionParseGetSessionInfo(sessResponse);
 
     if (!sessInfoObj)
     {
         alert("Failed to get session info");
     }
 
-    $("#json1").html(sessResponse);
-
-    var myDebug = {};
-
-    username = xrxGetElementValue(sessInfoObj, 'username')
-    
-    myDebug.username = username;
-    myDebug.userID = xrxGetElementValue(sessInfoObj, 'userID')
-    
-    $("#json2").text(JSON.stringify(myDebug, null, '\t'));
-
-    alert("username is: " + username)
-    //username = 'ist175714'
-
-    $.get(url_api_list(username))
+    userID = xrxGetElementValue(sessInfoObj, 'userID')
+    */
+    userID = 'ist175714'
+    $.get(url_api_list(userID))
         .done(get_units_success_callback)
         .fail(get_units_failed_callback)
 }
@@ -167,5 +155,5 @@ function session_failed_callback() {
 
 var units_dom = $("#units");
 
-xrxSessionGetSessionInfo("https://localhost", session_success_callback, session_failed_callback);
-//session_success_callback(1,2)
+//xrxSessionGetSessionInfo("https://localhost", session_success_callback, session_failed_callback);
+session_success_callback(1,2)
