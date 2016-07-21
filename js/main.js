@@ -64,7 +64,7 @@ function get_button_of_unit(id) {
 function UI_set_unit(id) {
     var btn = get_button_of_unit(id)
     $('button').removeClass('btn-success');
-    $('.btn-label[type=ok]').remove()
+    $('.btn-label[data-type=ok]').remove()
     btn.addClass('btn-success');
     btn.prepend(create_glyphicon_button_label())
 }
