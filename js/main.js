@@ -46,7 +46,6 @@ function create_unit_button_dom(id, name) {
 
     return $('\
         <button data-unit-id="'+id+'" data-balance="'+balance+'" '+btn_disabled+' type="button" class="btn btn-labeled btn-'+btn_class+'"> \
-            '+exclamation_glyph+'\
             <span class="btn-text">'+name+'</span> \
             <hr> \
             <span class="btn-text">Saldo: '+balance.toFixed(2)+' €</span> \
@@ -96,6 +95,12 @@ function get_units_success_callback(units) {
     for (var i = 0; i < units.length; i++) {
         units_dom.append(create_unit_button_dom(units[i].id, units[i].presentationName));
     }
+
+    $("button").each(function() {
+        if ($(this).data('balance') <= 0) {
+            $(this).prepend(create_glyphicon_button_label("exclamation-sign"))
+        }
+    })
 
     add_button_event_handler()
 
