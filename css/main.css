@@ -62,15 +62,16 @@
     vertical-align: middle;
 }
 .btn-label {
-    float: left;
     position: relative;
-    display: inline-block;
-    background: transparent;
-    border-radius: 3px 0 0 3px;
-    margin-right: 5px;
+    display: block;
+    margin-right: 10px;
 }
 
 .btn > hr {
     margin-top: 10px !important;
     margin-bottom: 5px !important;
+}
+
+.notifications {
+    display: none;
 }

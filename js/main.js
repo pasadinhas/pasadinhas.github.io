@@ -47,7 +47,7 @@ function create_unit_button_dom(id, name) {
 
     return $('\
         <button data-unit-id="'+id+'" data-balance="'+balance+'" '+btn_disabled+' type="button" class="btn btn-labeled btn-'+btn_class+'"> \
-            <div class="notifications">'+exclamation_glyph+'<hr></div> \
+            <div class="notifications"><hr></div> \
             <span class="btn-text">'+name+'</span> \
             <hr> \
             <span class="btn-text">Saldo: '+balance.toFixed(2)+' €</span> \
@@ -102,7 +102,7 @@ function get_units_success_callback(units) {
     $("button").each(function() {
         if ($(this).data('balance') <= 0) {
             console.log(this)
-            $(this).prepend(create_glyphicon_button_label("exclamation-sign"))
+            $(this).children('.notifications').prepend(create_glyphicon_button_label("exclamation-sign", "O seu saldo é negativo"))
         }
     })
 
