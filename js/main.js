@@ -188,7 +188,7 @@ function session_success_callback (sessRequest, sessResponse) {
     
     myDebug.username = username;
     
-    $("#json1").text(JSON.stringify(myDebug, null, '\t'));
+    $("#json2").text(JSON.stringify(myDebug, null, '\t'));
 
     alert("username is: " + username)
     //username = 'ist175714'
