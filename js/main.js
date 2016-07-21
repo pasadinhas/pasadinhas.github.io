@@ -32,7 +32,7 @@ function url_api_set_unit(user, unitID) {
 function create_glyphicon_button_label(glyph) {
     if (glyph == undefined) glyph = 'ok'
     return $(' \
-        <span class="btn-label"> \
+        <span class="btn-label" data-type="'+glyph+'"> \
                 <i class="glyphicon glyphicon-'+glyph+'"></i> \
         </span> \
     ');
@@ -64,7 +64,7 @@ function get_button_of_unit(id) {
 function UI_set_unit(id) {
     var btn = get_button_of_unit(id)
     $('button').removeClass('btn-success');
-    $('.btn-label').remove()
+    $('.btn-label[type=ok]').remove()
     btn.addClass('btn-success');
     btn.prepend(create_glyphicon_button_label())
 }
