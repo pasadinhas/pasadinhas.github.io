@@ -126,7 +126,7 @@ function handle_button_click(e) {
     $(this).blur();
     api_set_unit($(this).data('unit-id'))
     $('button').each(function() {
-        $(this).prop('disabled', $(this).data('balance') > 0)
+        $(this).prop('disabled', $(this).data('balance') <= 0)
     })
     return false;
 }
