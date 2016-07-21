@@ -42,6 +42,8 @@ function create_unit_button_dom(id, name) {
     return $('\
         <button data-unit-id="'+id+'" type="button" class="btn btn-labeled btn-default"> \
             <span class="btn-text">'+name+'</span> \
+            <hr> \
+            <span class="btn-text">Saldo: 2.00</span> \
         </button> \
     ');
 }

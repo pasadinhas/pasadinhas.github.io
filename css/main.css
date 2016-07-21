@@ -68,3 +68,8 @@
     background: transparent;
     border-radius: 3px 0 0 3px;
 }
+
+.btn > hr {
+    margin-top: 10px !important;
+    margin-bottom: 5px !important;
+}
