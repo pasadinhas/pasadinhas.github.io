@@ -70,6 +70,18 @@ function UI_set_unit(id) {
     btn.addClass('btn-success');
     btn.removeClass('btn-warning')
     btn.children('.notifications').prepend(create_glyphicon_button_label("ok", "Este é o centro de custos activo"))
+    UI_handle_notification_display_state()
+}
+
+function UI_handle_notification_display_state() {
+    $('button').each(function() {
+        var notifications = $(this).children('.notifications')
+        if (notifications.children('btn-label').length == 0) {
+            notifications.hide()
+        } else {
+            notifications.show()
+        }
+    })
 }
 
 // -------------------------------------------------------------
@@ -105,6 +117,8 @@ function get_units_success_callback(units) {
             $(this).children('.notifications').prepend(create_glyphicon_button_label("exclamation-sign", "O seu saldo é negativo"))
         }
     })
+
+    UI_handle_notification_display_state()
 
     add_button_event_handler()
 
