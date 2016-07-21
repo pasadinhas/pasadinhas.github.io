@@ -76,7 +76,7 @@ function UI_set_unit(id) {
 function UI_handle_notification_display_state() {
     $('button').each(function() {
         var notifications = $(this).children('.notifications')
-        if (notifications.children('btn-label').length == 0) {
+        if (notifications.children('.btn-label').length == 0) {
             notifications.hide()
         } else {
             notifications.show()
