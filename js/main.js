@@ -13,8 +13,8 @@ var DOMAIN = 'dot.tecnico.ulisboa.pt'
 var API_PREFIX = 'https://' + DOMAIN + '/api/internalBilling/v1/print/user/'
 var TOKEN_FIELD = '?token=' + TOKEN
 
-function url_api_list(user) {
-    return API_PREFIX + user + '/listUnits' + TOKEN_FIELD
+function url_api_info(user) {
+    return API_PREFIX + user + '/info' + TOKEN_FIELD
 }
 
 function url_api_current(user) {
@@ -106,7 +106,8 @@ function get_current_unit_failed() {
     alert('failed to get current unit')
 }
 
-function get_units_success_callback(units) {
+function user_info_success_callback(info) {
+    var units = info.billingUnits
     for (var i = 0; i < units.length; i++) {
         units_dom.append(create_unit_button_dom(units[i].id, units[i].presentationName));
     }
@@ -122,12 +123,12 @@ function get_units_success_callback(units) {
 
     add_button_event_handler()
 
-    $.get(url_api_current(userID))
-        .done(get_current_unit_success)
-        .fail(get_current_unit_failed)
+    if (info.currentBillingUnit) {
+        UI_set_unit(info.currentBillingUnit.id)
+    }
 }
 
-function get_units_failed_callback() {
+function user_info_failed_callback() {
     alert("failed to get units from dot")
 }
 
@@ -177,9 +178,9 @@ function session_success_callback (sessRequest, sessResponse) {
     userID = xrxGetElementValue(sessInfoObj, 'userID')
     */
     userID = 'ist175714'
-    $.get(url_api_list(userID))
-        .done(get_units_success_callback)
-        .fail(get_units_failed_callback)
+    $.get(url_api_info(userID))
+        .done(user_info_success_callback)
+        .fail(user_info_failed_callback)
 }
 
 function session_failed_callback() {
