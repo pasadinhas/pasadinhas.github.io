@@ -1,8 +1,8 @@
 // -------------------------------------------------------------
-// -- Global Variables (I know, I'm going to hell)
+// -- App state
 // -------------------------------------------------------------
 
-var userID;
+var state = null
 
 // -------------------------------------------------------------
 // -- API URL generators
@@ -15,10 +15,6 @@ var TOKEN_FIELD = '?token=' + TOKEN
 
 function url_api_info(user) {
     return API_PREFIX + user + '/info' + TOKEN_FIELD
-}
-
-function url_api_current(user) {
-    return API_PREFIX + user + '/currentBillingInformation' + TOKEN_FIELD
 }
 
 function url_api_set_unit(user, unitID) {
@@ -60,7 +56,7 @@ function get_button_of_unit(id) {
 }
 
 // -------------------------------------------------------------
-// -- API Functions
+// -- UI Functions
 // -------------------------------------------------------------
 
 function UI_set_unit(id) {
@@ -84,41 +80,46 @@ function UI_handle_notification_display_state() {
     })
 }
 
+function UI_display_units(unit) {
+    for (var i = 0; i < units.length; i++) {
+        units_dom.append(create_unit_button_dom(units[i].id, units[i].presentationName));
+    }
+}
+
+function UI_handle_negative_balance() {
+    $("button").each(function() {
+        if ($(this).data('balance') <= 0) {
+            $(this).children('.notifications').prepend(create_glyphicon_button_label("exclamation-sign", "O seu saldo é negativo"))
+        }
+    })
+}
+
 // -------------------------------------------------------------
 // -- API Functions
 // -------------------------------------------------------------
 
-function api_set_unit(id) {
-    $.post(url_api_set_unit(userID, id))
+function API_set_unit(id) {
+    $.post(url_api_set_unit(state.userID, id))
         .done(set_unit_success_callback)
         .fail(set_unit_fail_callback)
+}
+
+function API_get_user_info() {
+    $.get(url_api_info(state.userID))
+        .done(user_info_success_callback)
+        .fail(user_info_failed_callback)
 }
 
 // -------------------------------------------------------------
 // -- API Callbacks
 // -------------------------------------------------------------
 
-function get_current_unit_success(data) {
-    UI_set_unit(data.id)
-}
-
-function get_current_unit_failed() {
-    alert('failed to get current unit')
-}
-
 function user_info_success_callback(info) {
-    var units = info.billingUnits
-    for (var i = 0; i < units.length; i++) {
-        units_dom.append(create_unit_button_dom(units[i].id, units[i].presentationName));
-    }
 
-    $("button").each(function() {
-        if ($(this).data('balance') <= 0) {
-            console.log(this)
-            $(this).children('.notifications').prepend(create_glyphicon_button_label("exclamation-sign", "O seu saldo é negativo"))
-        }
-    })
+    state = info
 
+    UI_display_units(state.billingUnits)
+    UI_handle_negative_balance()
     UI_handle_notification_display_state()
 
     add_button_event_handler()
@@ -129,7 +130,7 @@ function user_info_success_callback(info) {
 }
 
 function user_info_failed_callback() {
-    alert("failed to get units from dot")
+    alert("failed to get user info from dot")
 }
 
 function set_unit_success_callback(unit) {
@@ -148,7 +149,7 @@ function handle_button_click(e) {
     var disabled_state = $('button').prop('disabled')
     $('button').prop('disabled', true);
     $(this).blur();
-    api_set_unit($(this).data('unit-id'))
+    API_set_unit($(this).data('unit-id'))
     $('button').each(function() {
         $(this).prop('disabled', $(this).data('balance') <= 0)
         if ($(this).data('balance') <= 0) {
@@ -177,10 +178,9 @@ function session_success_callback (sessRequest, sessResponse) {
 
     userID = xrxGetElementValue(sessInfoObj, 'userID')
     */
-    userID = 'ist175714'
-    $.get(url_api_info(userID))
-        .done(user_info_success_callback)
-        .fail(user_info_failed_callback)
+    state.userID = 'ist175714'
+    
+    API_get_user_info()
 }
 
 function session_failed_callback() {
