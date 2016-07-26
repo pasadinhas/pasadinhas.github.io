@@ -106,7 +106,7 @@ function API_set_unit(id) {
 
 function API_get_user_info(userID) {
     userID = (userID != undefined) ? userID : state.username;
-    $.get(url_api_info(state.username))
+    $.get(url_api_info(userID))
         .done(user_info_success_callback)
         .fail(user_info_failed_callback)
 }
