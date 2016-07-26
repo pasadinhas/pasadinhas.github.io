@@ -2,7 +2,7 @@
 // -- App state
 // -------------------------------------------------------------
 
-var state = null
+var state = {}
 
 // -------------------------------------------------------------
 // -- API URL generators
@@ -99,13 +99,14 @@ function UI_handle_negative_balance() {
 // -------------------------------------------------------------
 
 function API_set_unit(id) {
-    $.post(url_api_set_unit(state.userID, id))
+    $.post(url_api_set_unit(state.username, id))
         .done(set_unit_success_callback)
         .fail(set_unit_fail_callback)
 }
 
-function API_get_user_info() {
-    $.get(url_api_info(state.userID))
+function API_get_user_info(userID) {
+    userID = (userID) ? userID : state.username
+    $.get(url_api_info(state.username))
         .done(user_info_success_callback)
         .fail(user_info_failed_callback)
 }
@@ -178,9 +179,9 @@ function session_success_callback (sessRequest, sessResponse) {
 
     userID = xrxGetElementValue(sessInfoObj, 'userID')
     */
-    state.userID = 'ist175714'
+    userID = 'ist175714'
     
-    API_get_user_info()
+    API_get_user_info(userID)
 }
 
 function session_failed_callback() {
