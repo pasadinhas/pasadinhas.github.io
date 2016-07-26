@@ -80,7 +80,7 @@ function UI_handle_notification_display_state() {
     })
 }
 
-function UI_display_units(unit) {
+function UI_display_units(units) {
     for (var i = 0; i < units.length; i++) {
         units_dom.append(create_unit_button_dom(units[i].id, units[i].presentationName));
     }
