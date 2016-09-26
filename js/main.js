@@ -135,9 +135,8 @@ function user_info_failed_callback() {
     alert("failed to get user info from dot")
 }
 
-function set_unit_success_callback(unit) {
-    alert("set unit:" + unit.id)
-    UI_set_unit(unit.id)
+function set_unit_success_callback(response) {
+    UI_set_unit(response.currentBillingUnit.id)
 }
 
 function set_unit_fail_callback() {
