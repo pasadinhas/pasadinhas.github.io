@@ -72,6 +72,10 @@ hr {
     margin-bottom: 5px !important;
 }
 
+btn-success hr {
+    border-color: #4cae4c;
+}
+
 .glyphicon {
     margin-right: 5px !important;
 }
