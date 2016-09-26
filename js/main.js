@@ -36,17 +36,18 @@ function create_glyphicon_button_label(glyph, msg) {
 }
 
 function create_unit_button_dom(id, name) {
-    var balance = Math.random() * (10 - -10) + -10
+    //var balance = Math.random() * (10 - -10) + -10
+    // Hack: always positive balance, as that info is not yet available
+    var balance = 5;
     var btn_class = (balance > 0) ? "default" : "warning"
     var btn_disabled = (balance > 0) ? "" : "disabled"
     var exclamation_glyph = (balance > 0) ? "" : create_glyphicon_button_label("exclamation-sign", "O seu saldo é negativo").wrap('<p/>').parent().html()
 
+    //removed: <span class="btn-text">Saldo: '+balance.toFixed(2)+' €</span> \
     return $('\
         <button data-unit-id="'+id+'" data-balance="'+balance+'" '+btn_disabled+' type="button" class="btn btn-labeled btn-'+btn_class+'"> \
             <div class="notifications"><hr></div> \
             <span class="btn-text">'+name+'</span> \
-            <br> \
-            <span class="btn-text">Saldo: '+balance.toFixed(2)+' €</span> \
         </button> \
     ');
 }
