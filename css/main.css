@@ -72,7 +72,7 @@ hr {
     margin-bottom: 5px !important;
 }
 
-btn-success hr {
+.btn-success hr {
     border-color: #4cae4c;
 }
 
