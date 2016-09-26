@@ -136,6 +136,7 @@ function user_info_failed_callback() {
 }
 
 function set_unit_success_callback(unit) {
+    alert("set unit:" + unit.id)
     UI_set_unit(unit.id)
 }
 
