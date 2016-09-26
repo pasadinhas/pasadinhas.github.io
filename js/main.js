@@ -69,7 +69,7 @@ function create_topbar_dom(name, avatar) {
 // -------------------------------------------------------------
 
 function UI_display_topbar() {
-    $("body").prepend(create_topbar_dom(state.name, state.avatar))
+    $(".xerox-canvas").prepend(create_topbar_dom(state.name, state.avatarUrl))
 }
 
 function UI_set_unit(id) {
