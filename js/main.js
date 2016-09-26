@@ -69,7 +69,7 @@ function create_topbar_dom(name, avatar) {
 // -------------------------------------------------------------
 
 function UI_display_topbar() {
-    $("body").prepend(create_topbar_dom(stata.name, state.avatar))
+    $("body").prepend(create_topbar_dom(state.name, state.avatar))
 }
 
 function UI_set_unit(id) {
