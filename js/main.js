@@ -56,9 +56,21 @@ function get_button_of_unit(id) {
     return $('button[data-unit-id='+id+']');
 }
 
+function create_topbar_dom(name, avatar) {
+    return $('\
+        <div class="topbar"> \
+            <img class="avatar" src="'+avatar+'"> \
+            <span class="name">'+name+'</span> \
+        </div> \
+    ')
+}
 // -------------------------------------------------------------
 // -- UI Functions
 // -------------------------------------------------------------
+
+function UI_display_topbar() {
+    $("body").prepend(create_topbar_dom(stata.name, state.avatar))
+}
 
 function UI_set_unit(id) {
     var btn = get_button_of_unit(id)
@@ -120,6 +132,7 @@ function user_info_success_callback(info) {
 
     state = info
 
+    UI_display_topbar()
     UI_display_units(state.billingUnits)
     UI_handle_negative_balance()
     UI_handle_notification_display_state()
