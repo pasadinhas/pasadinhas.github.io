@@ -8,7 +8,8 @@ var state = {}
 // -- API URL generators
 // -------------------------------------------------------------
 
-var TOKEN = '11c9b3e24cd711e6beb89e71128cae77'
+//var TOKEN = '11c9b3e24cd711e6beb89e71128cae77'
+var TOKEN = window.location.search.substring(5)
 var DOMAIN = 'dot.tecnico.ulisboa.pt'
 var API_PREFIX = 'https://' + DOMAIN + '/api/internalBilling/v1/print/user/'
 var TOKEN_FIELD = '?token=' + TOKEN
